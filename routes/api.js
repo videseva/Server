@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const categoryController = require('../controllers/categoryController');
 const userController = require('../controllers/userController');
+const accountController = require('../controllers/accountController');
 // api/category
 router.post('/store-category', categoryController.createCategory);
 router.get('/list-categories', categoryController.listCategory);
@@ -16,4 +17,11 @@ router.get('/list-user', userController.listUser);
 router.get('/user/:id', userController.getUser);
 router.put('/edit-user/:id', userController.updateUser);
 router.delete('/delete-user/:id', userController.deleteUser);
+
+// api/account
+router.post('/store-account', accountController.createAccount);
+router.get('/list-account', accountController.listAccount);
+router.get('/account/:id', accountController.getAccount);
+router.put('/edit-account/:id', accountController.updateAccount);
+router.delete('/delete-account/:id', accountController.deleteAccount);
 module.exports = router;
