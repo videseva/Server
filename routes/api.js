@@ -4,6 +4,7 @@ const router = express.Router();
 const categoryController = require('../controllers/categoryController');
 const userController = require('../controllers/userController');
 const accountController = require('../controllers/accountController');
+const zoneController = require('../controllers/zoneController');
 // api/category
 router.post('/store-category', categoryController.createCategory);
 router.get('/list-categories', categoryController.listCategory);
@@ -24,4 +25,12 @@ router.get('/list-account', accountController.listAccount);
 router.get('/account/:id', accountController.getAccount);
 router.put('/edit-account/:id', accountController.updateAccount);
 router.delete('/delete-account/:id', accountController.deleteAccount);
+
+
+// api/zone
+router.post('/store-zone', zoneController.createZone);
+router.get('/list-zone', zoneController.listZone);
+router.get('/zone/:id', zoneController.getZone);
+router.put('/edit-zone/:id', zoneController.updateZone);
+router.delete('/delete-zone/:id', zoneController.deleteZone);
 module.exports = router;

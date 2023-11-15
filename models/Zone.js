@@ -1,14 +1,15 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/db');
 
-const Zone = sequelize.define('Zones', {
+const Zone = sequelize.define('zones', {
     id: {
         type: Sequelize.NUMBER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
-        
-    },idCuenta: {
+
+    },
+    idCuenta: {
         type: Sequelize.NUMBER,
         allowNull: false,
     },
@@ -30,6 +31,10 @@ const Zone = sequelize.define('Zones', {
     },
     estado: {
         type: Sequelize.NUMBER,
+        allowNull: false,
+    },
+    descripcion: {
+        type: Sequelize.STRING,
         allowNull: false,
     },
     date: {
