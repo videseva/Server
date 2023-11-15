@@ -5,7 +5,7 @@ const { use } = require("../routes/api");
 
 exports.createUser = async (req, res) => {
     try {
-        const { idCuenta, nombre, genero,telefono,correo, direccion} = req.body;
+        const { idCuenta, nombre, genero,telefono,correo, direccion,contrasena} = req.body;
         const c = {
             'idCuenta': idCuenta,
             'nombre': nombre,
@@ -13,6 +13,7 @@ exports.createUser = async (req, res) => {
             'telefono': telefono,
             'correo': correo,
             'direccion': direccion,
+            'contrasena':contrasena,
             'tipoUser': 3,
             'estado': 1,
            
@@ -59,7 +60,7 @@ exports.getUser = async (req, res) => {
 }
 exports.updateUser = async (req, res) => {
     try {
-        const { idCuenta,nombre, genero,telefono, direccion, tipoUser,estado} = req.body;
+        const { idCuenta,nombre, genero,telefono, direccion,contrasena, tipoUser,estado} = req.body;
         const userId = req.params.id;
         const user = await User.findByPk(userId);
         if (!user) {
@@ -70,6 +71,7 @@ exports.updateUser = async (req, res) => {
         user.genero = genero;
         user.telefono = telefono;
         user.direccion = direccion;
+        user.contrasena =contrasena;
         user.tipoUser = tipoUser;
         user.estado = estado;
         await user.save();

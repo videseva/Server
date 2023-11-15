@@ -14,6 +14,8 @@ exports.createAccount = async (req, res) => {
            
         };
         const account = await Account.create(c);
+
+        
         res.status(200).send(account);
 
     } catch (error) {

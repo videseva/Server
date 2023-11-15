@@ -38,6 +38,10 @@ const User = sequelize.define('users', {
         allowNull: false,
        
     },
+    contrasena: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
     estado: {
         type: Sequelize.NUMBER,
         allowNull: false,
