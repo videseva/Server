@@ -37,6 +37,14 @@ const Zone = sequelize.define('zones', {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    noPermitido: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    }, 
+    disponibilidad: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
     date: {
         type: Sequelize.DATE,
         defaultValue: Date.now(),

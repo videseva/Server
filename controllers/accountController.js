@@ -4,12 +4,14 @@ const Account = require("../models/Account");
 
 exports.createAccount = async (req, res) => {
     try {
-        const { nombre,telefono,correo, direccion} = req.body;
+        const { nombre,telefono,correo, direccion, descripcion, tipoCondominio} = req.body;
         const c = {
             'nombre': nombre,
             'telefono': telefono,
             'correo': correo,
             'direccion': direccion,
+            'descripcion': descripcion,
+            'tipoCondominio': tipoCondominio,
             'estado': 1,
            
         };
@@ -55,7 +57,7 @@ exports.getAccount = async (req, res) => {
 }
 exports.updateAccount = async (req, res) => {
     try {
-        const { nombre,telefono,correo, direccion,estado} = req.body;
+        const { nombre,telefono,correo, direccion, descripcion, tipoCondominio,estado} = req.body;
         const accountId = req.params.id;
         const account = await Account.findByPk(accountId);
         if (!account) {
@@ -65,6 +67,8 @@ exports.updateAccount = async (req, res) => {
         account.telefono = telefono;
         account.correo = correo;
         account.direccion = direccion;
+        account.descripcion = descripcion;
+        account.tipoCondominio = tipoCondominio;
         account.estado = estado;
         await account.save();
         res.status(200).send(account);

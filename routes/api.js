@@ -26,12 +26,12 @@ router.delete('/delete-user/:id', authMiddleware ,userController.deleteUser);
 router.post('/store-account', accountController.createAccount);
 router.get('/list-account',authMiddleware, accountController.listAccount);
 router.get('/account', authMiddleware,accountController.getAccount);
-router.put('/edit-account/:id', authMiddleware,accountController.updateAccount);
+router.put('/edit-account/:id',authMiddleware,accountController.updateAccount);
 router.delete('/delete-account/:id', authMiddleware,accountController.deleteAccount);
 
 
 // api/zone
-router.post('/store-zone', authMiddleware, zoneController.createZone);
+router.post('/store-zone', zoneController.createZone);
 router.get('/list-zone', authMiddleware, zoneController.listZone);
 router.get('/zone/:id', authMiddleware,zoneController.getZone);
 router.put('/edit-zone/:id',authMiddleware, zoneController.updateZone);

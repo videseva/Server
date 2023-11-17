@@ -14,15 +14,21 @@ const Account = sequelize.define('accounts', {
     },
     telefono: {
         type: Sequelize.STRING,
-        allowNull: false,
-    }, 
+        allowNull: true,
+    },
     correo: {
         type: Sequelize.STRING,
         allowNull: false,
-    }, 
+    },
     direccion: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
+    }, descripcion: {
+        type: Sequelize.STRING,
+        allowNull: true,
+    }, tipoCondominio: {
+        type: Sequelize.STRING,
+        allowNull: true,
     },
     estado: {
         type: Sequelize.NUMBER,

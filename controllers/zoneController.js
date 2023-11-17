@@ -5,15 +5,18 @@ const { use } = require("../routes/api");
 
 exports.createZone = async (req, res) => {
     try {
-        const { nombre, capacidad,idCategoria,foto, descripcion} = req.body;
+        const { nombre, capacidad,idCategoria,foto, descripcion,noPermitido,disponibilidad} = req.body;
         const z = {
             'idCuenta': req.user.idCuenta,
             'nombre': nombre,
             'capacidad': capacidad,
             'idCategoria': idCategoria,
             'foto': foto,
-            'descripcion': descripcion,
             'estado': 1,
+            'descripcion': descripcion,
+            'noPermitido': noPermitido,
+            'disponibilidad': disponibilidad,
+           
            
         };
         const zone = await Zone.create(z);
@@ -57,7 +60,7 @@ exports.getZone = async (req, res) => {
 }
 exports.updateZone = async (req, res) => {
     try {  
-        const { nombre, capacidad,idCategoria,foto, estado ,descripcion} = req.body;
+        const { nombre, capacidad,idCategoria,foto, descripcion,noPermitido,disponibilidad, estado} = req.body;
         const zoneId = req.params.id;
         const zone = await Zone.findByPk(zoneId);
         if (!zone) {
@@ -70,6 +73,8 @@ exports.updateZone = async (req, res) => {
         zone.foto = foto;
         zone.estado = estado;
         zone.descripcion = descripcion;
+        zone.noPermitido = noPermitido;
+        zone.disponibilidad = disponibilidad;
         await zone.save();
         res.status(200).send(zone);
     } catch (error) {
