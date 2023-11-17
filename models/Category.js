@@ -11,6 +11,10 @@ const Category = sequelize.define('categories', {
     nombre: {
         type: Sequelize.STRING,
         allowNull: false,
+    }, 
+    idCuenta:{
+        type: Sequelize.NUMBER,
+        allowNull: false,
     },
     estado: {
         type: Sequelize.NUMBER,

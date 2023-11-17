@@ -5,19 +5,22 @@ const categoryController = require('../controllers/categoryController');
 const userController = require('../controllers/userController');
 const accountController = require('../controllers/accountController');
 const zoneController = require('../controllers/zoneController');
+const loginController = require('../controllers/loginController');
+const authMiddleware = require('../Middleware/authMiddleware');
+
 // api/category
-router.post('/store-category', categoryController.createCategory);
-router.get('/list-categories', categoryController.listCategory);
-router.get('/category/:id', categoryController.listCategory);
-router.put('/edit-category/:id', categoryController.updateCategory);
-router.delete('/delete-category/:id', categoryController.deleteCategory);
+router.post('/store-category', authMiddleware, categoryController.createCategory);
+router.get('/list-categories', authMiddleware, categoryController.listCategory);
+router.get('/category/:id', authMiddleware, categoryController.listCategory);
+router.put('/edit-category/:id', authMiddleware, categoryController.updateCategory);
+router.delete('/delete-category/:id', authMiddleware, categoryController.deleteCategory);
 
 // api/user
-router.post('/store-user', userController.createUser);
-router.get('/list-user', userController.listUser);
-router.get('/user/:id', userController.getUser);
-router.put('/edit-user/:id', userController.updateUser);
-router.delete('/delete-user/:id', userController.deleteUser);
+router.post('/store-user',authMiddleware, userController.createUser);
+router.get('/list-user', authMiddleware,userController.listUser);
+router.get('/user/:id',authMiddleware ,userController.getUser);
+router.put('/edit-user/:id', authMiddleware,userController.updateUser);
+router.delete('/delete-user/:id', authMiddleware ,userController.deleteUser);
 
 // api/account
 router.post('/store-account', accountController.createAccount);
@@ -28,9 +31,17 @@ router.delete('/delete-account/:id', accountController.deleteAccount);
 
 
 // api/zone
-router.post('/store-zone', zoneController.createZone);
-router.get('/list-zone', zoneController.listZone);
-router.get('/zone/:id', zoneController.getZone);
-router.put('/edit-zone/:id', zoneController.updateZone);
-router.delete('/delete-zone/:id', zoneController.deleteZone);
+router.post('/store-zone', authMiddleware, zoneController.createZone);
+router.get('/list-zone', authMiddleware, zoneController.listZone);
+router.get('/zone/:id', authMiddleware,zoneController.getZone);
+router.put('/edit-zone/:id',authMiddleware, zoneController.updateZone);
+router.delete('/delete-zone/:id', authMiddleware,zoneController.deleteZone);
+
+
+//login
+
+// api/zone
+
+router.post('/login', loginController.loginUser);
+
 module.exports = router;

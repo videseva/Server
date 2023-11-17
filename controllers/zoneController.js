@@ -5,9 +5,9 @@ const { use } = require("../routes/api");
 
 exports.createZone = async (req, res) => {
     try {
-        const { idCuenta, nombre, capacidad,idCategoria,foto, descripcion} = req.body;
+        const { nombre, capacidad,idCategoria,foto, descripcion} = req.body;
         const z = {
-            'idCuenta': idCuenta,
+            'idCuenta': req.user.idCuenta,
             'nombre': nombre,
             'capacidad': capacidad,
             'idCategoria': idCategoria,
@@ -30,7 +30,8 @@ exports.listZone = async (req, res) => {
             where: {
                 estado: {
                     [Op.or]: [1, 2]
-                }
+                },
+                idCuenta:req.user.idCuenta
               }
         });
         res.status(200).send(zones);
