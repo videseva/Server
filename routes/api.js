@@ -32,7 +32,7 @@ router.delete('/delete-account/:id', authMiddleware,accountController.deleteAcco
 
 
 // api/zone
-router.post('/store-zone', zoneController.createZone);
+router.post('/store-zone',authMiddleware ,zoneController.createZone);
 router.get('/list-zone', authMiddleware, zoneController.listZone);
 router.get('/zone/:id', authMiddleware,zoneController.getZone);
 router.put('/edit-zone/:id',authMiddleware, zoneController.updateZone);
@@ -42,8 +42,8 @@ router.delete('/delete-zone/:id', authMiddleware,zoneController.deleteZone);
 router.post('/store-reserver',authMiddleware, reserverController.createReserver);
 router.get('/list-reserver', authMiddleware, reserverController.listReserver);
 router.get('/reserver/:id',authMiddleware, reserverController.getReserver);
-router.put('/edit-reserver/:id',reserverController.updateReserver);
-router.delete('/delete-reserver/:id', reserverController.deleteReserver);
+router.put('/edit-reserver/:id',authMiddleware,reserverController.updateReserver);
+router.delete('/delete-reserver/:id',authMiddleware, reserverController.deleteReserver);
 
 //api/login
 router.post('/login', loginController.loginUser);
