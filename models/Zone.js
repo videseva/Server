@@ -55,7 +55,6 @@ const Zone = sequelize.define('zones', {
         }
     },
 }, {
-
     timestamps: false,
 });
 
