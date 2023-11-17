@@ -24,10 +24,10 @@ router.delete('/delete-user/:id', authMiddleware ,userController.deleteUser);
 
 // api/account
 router.post('/store-account', accountController.createAccount);
-router.get('/list-account', accountController.listAccount);
-router.get('/account/:id', accountController.getAccount);
-router.put('/edit-account/:id', accountController.updateAccount);
-router.delete('/delete-account/:id', accountController.deleteAccount);
+router.get('/list-account',authMiddleware, accountController.listAccount);
+router.get('/account', authMiddleware,accountController.getAccount);
+router.put('/edit-account/:id', authMiddleware,accountController.updateAccount);
+router.delete('/delete-account/:id', authMiddleware,accountController.deleteAccount);
 
 
 // api/zone

@@ -41,7 +41,7 @@ exports.listAccount= async (req, res) => {
 exports.getAccount = async (req, res) => {
     try {
         
-        const accountId = req.params.id;
+        const accountId = req.user.idCuenta;
         const account = await Account.findByPk(accountId);
         if (!account) {
             res.status(404).json({ message: 'Cuenta no encontrada' });
