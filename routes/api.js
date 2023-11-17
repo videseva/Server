@@ -6,6 +6,7 @@ const userController = require('../controllers/userController');
 const accountController = require('../controllers/accountController');
 const zoneController = require('../controllers/zoneController');
 const loginController = require('../controllers/loginController');
+const reserverController = require('../controllers/reserverController');
 const authMiddleware = require('../Middleware/authMiddleware');
 
 // api/category
@@ -37,11 +38,14 @@ router.get('/zone/:id', authMiddleware,zoneController.getZone);
 router.put('/edit-zone/:id',authMiddleware, zoneController.updateZone);
 router.delete('/delete-zone/:id', authMiddleware,zoneController.deleteZone);
 
+// api/reserver
+router.post('/store-reserver',authMiddleware, reserverController.createReserver);
+router.get('/list-reserver', authMiddleware, reserverController.listReserver);
+router.get('/reserver/:id',authMiddleware, reserverController.getReserver);
+router.put('/edit-reserver/:id',reserverController.updateReserver);
+router.delete('/delete-reserver/:id', reserverController.deleteReserver);
 
-//login
-
-// api/zone
-
+//api/login
 router.post('/login', loginController.loginUser);
 
 module.exports = router;
