@@ -64,7 +64,7 @@ exports.updateUser = async (req, res) => {
         if (!user) {
             res.status(404).json({ message: 'Usuario  no encontrado' });
         }
-        user.idCuenta = idCuenta;
+      //  user.idCuenta = idCuenta;
         user.nombre = nombre;
         user.genero = genero;
         user.telefono = telefono;
