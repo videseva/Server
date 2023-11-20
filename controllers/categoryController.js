@@ -52,14 +52,13 @@ exports.getCategory = async (req, res) => {
 }
 exports.updateCategory = async (req, res) => {
     try {
-        const { nombre, idCuenta, estado} = req.body;
-        const categoryId = req.params.id;
+        const { id, nombre, idCuenta, estado} = req.body;
+        const categoryId = id;
         const category = await Category.findByPk(categoryId);
         if (!category) {
             res.status(404).json({ message: 'Categoria no encontrada' });
         }
         category.nombre = nombre;
-        category.idCuenta = idCuenta;
         category.estado = estado;
         await category.save();
         res.status(200).send(category);

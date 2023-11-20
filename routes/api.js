@@ -40,7 +40,8 @@ router.delete('/delete-zone/:id', authMiddleware,zoneController.deleteZone);
 
 // api/reserver
 router.post('/store-reserver',authMiddleware, reserverController.createReserver);
-router.get('/list-reserver', authMiddleware, reserverController.listReserver);
+router.get('/reserver/:id',authMiddleware, reserverController.getReserver);
+router.get('/list-reserver',authMiddleware, reserverController.listReserver);
 router.get('/reserver/:id',authMiddleware, reserverController.getReserver);
 router.put('/edit-reserver/:id',authMiddleware,reserverController.updateReserver);
 router.delete('/delete-reserver/:id',authMiddleware, reserverController.deleteReserver);

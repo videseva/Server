@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/db');
-
+const Zone = require('./Zone');
+const User = require('./User');
 const Reserver = sequelize.define('reservers', {
     id: {
         type: Sequelize.NUMBER,
@@ -57,5 +58,7 @@ const Reserver = sequelize.define('reservers', {
 
     timestamps: false,
 });
+Reserver.belongsTo(Zone, { foreignKey: 'idZone' });
+Reserver.belongsTo(User, { foreignKey: 'idUser' });
 
 module.exports = Reserver;

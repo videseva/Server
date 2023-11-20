@@ -60,8 +60,8 @@ exports.getZone = async (req, res) => {
 }
 exports.updateZone = async (req, res) => {
     try {  
-        const { nombre, capacidad,idCategoria,foto, descripcion,noPermitido,disponibilidad, estado} = req.body;
-        const zoneId = req.params.id;
+        const {id, nombre, capacidad,idCategoria,foto, descripcion,noPermitido,disponibilidad, estado} = req.body;
+        const zoneId = id;
         const zone = await Zone.findByPk(zoneId);
         if (!zone) {
             res.status(404).json({ message: 'Zona no encontrado' });
@@ -89,7 +89,7 @@ exports.deleteZone = async (req, res) => {
         const zoneId = req.params.id;
         const zone = await Zone.findByPk(zoneId);
         if (!zone) {
-            res.status(404).json({ message: 'Zona no encontrada' });
+            res.status(500).json({ message: 'Zona no encontrada' });
         }
         zone.estado = 3;
         await zone.save();

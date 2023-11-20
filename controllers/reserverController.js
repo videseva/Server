@@ -1,11 +1,13 @@
 const { json } = require("express/lib/response");
 const Reserver = require("../models/Reserver");
+const Zone = require("../models/Zone");
+const User = require("../models/User");
 const { Op } = require("sequelize");
 exports.createReserver = async (req, res) => {
     try {
-        const { idCategoria, idZone,descripcion,horario,fechaReserver } = req.body;
+        const { idCategoria, idZone, descripcion, horario, fechaReserver } = req.body;
         const r = {
-            'idCuenta':  req.user.idCuenta,
+            'idCuenta': req.user.idCuenta,
             'idCategoria': idCategoria,
             'idZone': idZone,
             'idUser': req.user.id,
@@ -24,14 +26,23 @@ exports.createReserver = async (req, res) => {
 }
 exports.listReserver = async (req, res) => {
     try {
-        
+
         const reservers = await Reserver.findAll({
+            include: [
+                {
+                    model: User
+                },
+                {
+                    model: Zone
+                },
+            ],
             where: {
                 estado: {
-                    [Op.or]: [1, 2]
+                    [Op.or]: [1, 2, 3]
                 },
-                idCuenta:  req.user.idCuenta
-              }
+                idCuenta: req.user.idCuenta,
+            }
+
         });
         res.status(200).send(reservers);
     } catch (error) {
@@ -41,12 +52,12 @@ exports.listReserver = async (req, res) => {
 }
 exports.getReserver = async (req, res) => {
     try {
-        const {id} = req.body;
+        const { id } = req.body;
         const reserver = await Reserver.findByPk(id);
         if (!reserver) {
             res.status(404).json({ message: 'Reserva no encontrada' });
         }
-      
+
         res.status(200).send(reserver);
     } catch (error) {
         console.log(error);
@@ -55,8 +66,8 @@ exports.getReserver = async (req, res) => {
 }
 exports.updateReserver = async (req, res) => {
     try {
-        const { id,idCategoria, idZone,descripcion,horario,fechaReserver, estado } = req.body;
-        const reserverId = id;
+        const { id, idCategoria, idZone, descripcion, horario, fechaReserver, estado } = req.body;
+        const reserverId =  req.params.id;
         const reserver = await Category.findByPk(reserverId);
         if (!reserver) {
             res.status(404).json({ message: 'reservar no encontrada' });
@@ -75,14 +86,14 @@ exports.updateReserver = async (req, res) => {
 }
 exports.deleteReserver = async (req, res) => {
     try {
-        const { id, nombre, estado, date} = req.body;
-        const reserverId = id;
+        const { id, nombre, estado, date } = req.body;
+        const reserverId =  req.params.id;;
         const reserver = await Reserver.findByPk(reserverId);
         if (!reserver) {
-            res.status(404).json({ message: 'Reserva no encontrada' });
+            res.status(500).json({ message: 'Reserva no encontrada' });
         }
-        reserver.estado = 3;
-        await Reserver.save();
+        reserver.estado = 4;
+        await reserver.save();
         res.status(200).send(reserver);
     } catch (error) {
         console.log(error);

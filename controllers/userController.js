@@ -44,7 +44,8 @@ exports.listUser = async (req, res) => {
 exports.getUser = async (req, res) => {
     try {
 
-        const userId = req.params.id;
+        const { id} = req.body;
+        const userId = id;
         const user = await User.findByPk(userId);
         if (!user) {
             res.status(404).json({ message: 'Usuario no encontrada' });
