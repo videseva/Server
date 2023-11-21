@@ -43,12 +43,10 @@ exports.listUser = async (req, res) => {
 }
 exports.getUser = async (req, res) => {
     try {
-
-        const { id} = req.body;
-        const userId = id;
+        const userId = req.params.id;
         const user = await User.findByPk(userId);
         if (!user) {
-            res.status(404).json({ message: 'Usuario no encontrada' });
+            res.status(500).json({ message: 'Usuario no encontrada' });
         }
 
         res.status(200).send(user);
@@ -63,7 +61,7 @@ exports.updateUser = async (req, res) => {
         const userId = req.params.id;
         const user = await User.findByPk(userId);
         if (!user) {
-            res.status(404).json({ message: 'Usuario  no encontrado' });
+            res.status(500).json({ message: 'Usuario  no encontrado' });
         }
       //  user.idCuenta = idCuenta;
         user.nombre = nombre;
@@ -87,7 +85,7 @@ exports.deleteUser = async (req, res) => {
         const userId = req.params.id;
         const user = await User.findByPk(userId);
         if (!user) {
-            res.status(404).json({ message: 'Usuario no encontrada' });
+            res.status(500).json({ message: 'Usuario no encontrada' });
         }
         user.estado = 3;
         await user.save();
