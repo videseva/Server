@@ -44,6 +44,7 @@ router.get('/reserver/:id',authMiddleware, reserverController.getReserver);
 router.get('/list-reserver',authMiddleware, reserverController.listReserver);
 router.get('/reserver/:id',authMiddleware, reserverController.getReserver);
 router.put('/edit-reserver/:id',authMiddleware,reserverController.updateReserver);
+router.put('/edit-statesReserver/:id',authMiddleware,reserverController.updateState);
 router.delete('/delete-reserver/:id',authMiddleware, reserverController.deleteReserver);
 
 //api/login

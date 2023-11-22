@@ -68,7 +68,7 @@ exports.updateReserver = async (req, res) => {
     try {
         const { id, idCategoria, idZone, descripcion, horario, fechaReserver, estado } = req.body;
         const reserverId =  req.params.id;
-        const reserver = await Category.findByPk(reserverId);
+        const reserver = await Reserver.findByPk(reserverId);
         if (!reserver) {
             res.status(404).json({ message: 'reservar no encontrada' });
         }
@@ -78,6 +78,24 @@ exports.updateReserver = async (req, res) => {
         reserver.estado = estado;
         await reserver.save();
         res.status(200).send(reserver);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error');
+    }
+
+}
+exports.updateState = async (req, res) => {
+    try {
+        const {estado } = req.body;
+        const idReserve =req.params.id;
+        const reserver = await Reserver.findByPk(idReserve);
+        if (!reserver) {
+            res.status(404).json({ message: 'reserva no encontrada' });
+        }
+        reserver.estado = estado;
+        await reserver.save();
+        res.status(200).send({ message: 'reserva Modificada' });
+
     } catch (error) {
         console.log(error);
         res.status(500).send('Hubo un error');
