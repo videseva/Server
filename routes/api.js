@@ -7,11 +7,11 @@ const accountController = require('../controllers/accountController');
 const zoneController = require('../controllers/zoneController');
 const loginController = require('../controllers/loginController');
 const reserverController = require('../controllers/reserverController');
+const sendEmailController = require('../controllers/sendEmailController');
 const authMiddleware = require('../Middleware/authMiddleware');
 
-let envio = require('../controllers/sendEmailController');
 //correo
-router.post('/envio', envio.envioCorreo);
+router.post('/envio', sendEmailController.envioCorreo);
 
 // api/category
 router.post('/store-category', authMiddleware, categoryController.createCategory);
