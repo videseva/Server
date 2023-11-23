@@ -2,7 +2,7 @@ const { request, response } = require('express');
 const nodeMailer = require('nodemailer');
 
 const envioCorreo = (req = request, resp = response) => {
-    const  {nombre,correo,asunto} = req.body;
+    const  {asunto,correo2,mensaje} = req.body;
 
     const config = nodeMailer.createTransport({
         host: 'smtp.gmail.com',
@@ -16,9 +16,10 @@ const envioCorreo = (req = request, resp = response) => {
     const opciones = {
         from: 'Propiedad Horizontal',
         subject: asunto,
-        to: correo,
-        text: nombre
+        to: correo2,
+        text: mensaje
     };
+    console.log(opciones);
 
     config.sendMail(opciones, function (error, result) {
         if (error) {
