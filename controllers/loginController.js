@@ -18,7 +18,7 @@ exports.loginUser = async (req, res) => {
             },
         });
         if (!user) {
-            res.status(404).json({ message: 'Usuario no encontrada' });
+            res.status(500).json({ message: 'Usuario existe' });
         }
         const token = jwt.sign({ 
             id: user.id,
