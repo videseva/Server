@@ -9,6 +9,10 @@ const loginController = require('../controllers/loginController');
 const reserverController = require('../controllers/reserverController');
 const authMiddleware = require('../Middleware/authMiddleware');
 
+let envio = require('../controllers/sendEmailController');
+//correo
+router.post('/envio', envio.envioCorreo);
+
 // api/category
 router.post('/store-category', authMiddleware, categoryController.createCategory);
 router.get('/list-categories', authMiddleware, categoryController.listCategory);
