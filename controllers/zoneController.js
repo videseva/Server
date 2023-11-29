@@ -15,7 +15,7 @@ const upload = multer();
 
 exports.createZone = async (req, res) => {
     try {
-        const bucketName = 's3-proyecto';
+        const bucketName = 's3-proyectoc';
 
         const base64String="";
         const { nombre, capacidad, idCategoria, foto, descripcion, noPermitido, disponibilidad } = req.body;
